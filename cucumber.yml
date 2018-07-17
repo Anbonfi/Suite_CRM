@@ -1,0 +1,9 @@
+default: --no-source --color --format pretty
+
+manipular_task: -t @ManipularTasks -f html -o html_report_manipular_task.html
+
+cadastro: -t @CadastrarTask -f html -o html_report_cadastro.html
+
+alteracao: -t @AlterarTask -f html -o html_report_alteracao.html
+
+Delecao: -t @DeletarTask - f html -o html_report_delecao.html
