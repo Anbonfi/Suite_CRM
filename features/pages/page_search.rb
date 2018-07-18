@@ -2,13 +2,17 @@ class Search <SitePrism::Page
 
 	element :txt_assunto, "input[id='name_basic']"
 	element :btn_procurar, "input[id='search_form_submit']"
+	element :btn_editar, "a[class='edit-link']"
+	element :btn_filtro1, "ul.clickMenu.selectmenu.searchLink.SugarActionMenu.listViewLinkButton.listViewLinkButton_"
+	element :btn_filtro2, "ul.clickMenu.selectmenu.searchLink.SugarActionMenu.listViewLinkButton.listViewLinkButton_top"
+	element :btn_seleciona_tarefa, "div.list-view-rounded-corners > table.list.view.table-responsive > tbody > tr.oddListRowS1 > td.inlineEdit > b > a[href*='?action']"
 	
 	def altera_task(task_alterada,status_novo)
 		Search.new.filtro()
 		txt_assunto.set(task_alterada)
 		btn_procurar.click
 		assert_text(task_alterada)
-		find(:xpath, "//span[@class='suitepicon suitepicon-action-edit']").click
+		btn_editar.click
 		Task.new.altera_status(status_novo)
 
 	end
@@ -18,7 +22,7 @@ class Search <SitePrism::Page
 		txt_assunto.set(task_a_deletar)
 		btn_procurar.click
 		assert_text(task_a_deletar)
-		find(:xpath, "//*[@type='name']/b/a").click
+		btn_seleciona_tarefa.click
 		Task.new.deleta_task()
 
 	end
@@ -26,9 +30,9 @@ class Search <SitePrism::Page
 	def filtro()
 
 		if has_text?('No results found')
-			find(:xpath,"//*[@class='clickMenu selectmenu searchLink SugarActionMenu listViewLinkButton listViewLinkButton_']/li/a").click	
+			btn_filtro1.click
 		else
-			find(:xpath,"//*[@class='clickMenu selectmenu searchLink SugarActionMenu listViewLinkButton listViewLinkButton_top']/li/a").click
+			btn_filtro2.click
 		end	
 	end
 end

@@ -3,7 +3,7 @@ class Task <SitePrism::Page
 	element :enum_estado, "select[id='status']"
 	element :btn_acao, "li[id='tab-actions']"
 	element :btn_delete, "input[id='delete_button']"
-
+	element :btn_salvar, "td.buttons > div.buttons > input#SAVE.button.primary"
 
 	def valida_task(task)
 		assert_text(task)
@@ -11,7 +11,7 @@ class Task <SitePrism::Page
 
 	def altera_status(status_novo)
 		enum_estado.select(status_novo)
-		find(:xpath, "//*[@id='EditView']/div[3]/input[@id='SAVE']").click
+		btn_salvar.click
 	end
 
 	def deleta_task()
