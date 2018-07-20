@@ -13,7 +13,7 @@ class Search <SitePrism::Page
 		btn_procurar.click
 		assert_text(task_alterada)
 		btn_editar.click
-		Task.new.altera_status(status_novo)
+		EditView.new.altera_status(status_novo)
 
 	end
 
@@ -23,7 +23,7 @@ class Search <SitePrism::Page
 		btn_procurar.click
 		assert_text(task_a_deletar)
 		btn_seleciona_tarefa.click
-		Task.new.deleta_task()
+		EditView.new.deleta_task()
 
 	end
 
