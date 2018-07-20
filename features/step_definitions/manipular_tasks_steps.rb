@@ -6,11 +6,11 @@ end
 
 Quando("criar uma nova task com {string}, {string} e {string}") do |subject,status,priority|
   	Home.new.acessa_tela_create_task()
-	Create.new.create_task(subject,status,priority)
+	EditView.new.create_task(subject,status,priority)
 end
 
 Entao("apresentara a {string} cadastrada no sistema") do |nova_task|
-	Task.new.valida_task(nova_task)
+	EditView.new.valida_task(nova_task)
 end
 
 Quando("alterar a task {string} cadastrada alterando o {string}") do |task_alterada,status_novo|
@@ -19,7 +19,7 @@ Quando("alterar a task {string} cadastrada alterando o {string}") do |task_alter
 end
 
 Entao("apresentara a task {string} com a alteracao no status") do |task_alterada|
- 	Task.new.valida_task(task_alterada)
+ 	EditView.new.valida_task(task_alterada)
 end
 
 Quando("deletar a task {string} cadastrada no sistema") do |task_a_deletar|
@@ -28,5 +28,5 @@ Quando("deletar a task {string} cadastrada no sistema") do |task_a_deletar|
 end
 
 Entao("exibira mensagem informando que a task não existe no sistema") do
-	Task.new.valida_task_deletada()  
+	EditView.new.valida_task_deletada()  
 end
